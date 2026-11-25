@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}Surprise 2026{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container header-inner">
+    <h1 class="brand"><a href="/">Surprise 2026</a></h1>
+    <nav>
+      <ul class="nav">
+        {% if request.user.is_authenticated %}
+          <li class="nav-item">Hallo, {{ request.user.username }}!</li>
+          <li class="nav-item"><a href="{% url 'logout' %}">Uitloggen</a></li>
+        {% else %}
+          <li class="nav-item"><a href="{% url 'login' %}">Inloggen</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="message {{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <small>&copy; {{ now|date:"Y" }} Surprise 2026</small>
+  </div>
+</footer>
+</body>
+</html>

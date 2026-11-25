@@ -1,0 +1,54 @@
+:root {
+  --bg: #0f172a;
+  --card: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --primary: #38bdf8;
+  --success: #22c55e;
+  --info: #f59e0b;
+  --danger: #ef4444;
+  --border: #1f2937;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+
+.container { width: 100%; max-width: 920px; margin: 0 auto; padding: 1rem; }
+
+.site-header { border-bottom: 1px solid var(--border); background: #0b1220; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; }
+.brand a { color: var(--text); text-decoration: none; }
+.nav { list-style: none; display: flex; gap: 1rem; padding: 0; margin: 0; }
+.nav-item a { color: var(--primary); text-decoration: none; }
+
+.site-footer { border-top: 1px solid var(--border); margin-top: 2rem; padding: 1rem 0; color: var(--muted); }
+
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; margin: 1rem 0; }
+
+.muted { color: var(--muted); }
+
+.form-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.form-control { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-control input { background: #0b1220; border: 1px solid var(--border); color: var(--text); padding: 0.6rem 0.7rem; border-radius: 8px; }
+
+.btn { border: 1px solid var(--primary); color: var(--primary); background: transparent; padding: 0.6rem 1rem; border-radius: 8px; cursor: pointer; }
+.btn.primary { background: var(--primary); color: #001018; border-color: var(--primary); font-weight: 600; }
+.btn:hover { filter: brightness(1.05); }
+
+.poem { white-space: pre-wrap; background: #0b1220; border: 1px dashed var(--border); padding: 1rem; border-radius: 8px; }
+
+.tasks { padding-left: 1.25rem; }
+.messages { list-style: none; padding: 0; }
+.message { padding: 0.5rem 0.75rem; border-radius: 8px; margin: 0.5rem 0; }
+.message.success { background: #052e1a; color: #9ef0b6; }
+.message.error { background: #3c0c0c; color: #ffb4b4; }
+
+.result { margin-top: 1rem; }
+.success { color: var(--success); }
+.info { color: var(--info); }
+.error { color: var(--danger); }
+.combo { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background: #0b1220; border: 1px solid var(--border); padding: 0.25rem 0.5rem; border-radius: 6px; }
+
+@media (max-width: 800px) {
+  .form-grid { grid-template-columns: 1fr; }
+}
