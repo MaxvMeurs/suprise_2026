@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Opdrachten - Surprise 2026{% endblock %}
+{% block content %}
+  <section class="card">
+    <h2>Gedicht</h2>
+    {% if poem %}
+      <h3 class="muted">{{ poem.title }}</h3>
+      <pre class="poem">{{ poem.body }}</pre>
+    {% else %}
+      <p class="muted">Er is nog geen gedicht geconfigureerd. Voeg er één toe in de admin.</p>
+    {% endif %}
+  </section>
+
+  <section class="card">
+    <h2>Drie opdrachten</h2>
+    {% if tasks|length == 3 %}
+      <ol class="tasks">
+        {% for t in tasks %}
+          <li>
+            <strong>Opdracht {{ t.order }}:</strong>
+            <div>{{ t.question }}</div>
+          </li>
+        {% endfor %}
+      </ol>
+
+      <form method="post" class="answers" novalidate>
+        {% csrf_token %}
+        <div class="form-grid">
+          <div class="form-control">
+            <label for="{{ form.answer1.id_for_label }}">{{ form.answer1.label }}</label>
+            {{ form.answer1 }}
+          </div>
+          <div class="form-control">
+            <label for="{{ form.answer2.id_for_label }}">{{ form.answer2.label }}</label>
+            {{ form.answer2 }}
+          </div>
+          <div class="form-control">
+            <label for="{{ form.answer3.id_for_label }}">{{ form.answer3.label }}</label>
+            {{ form.answer3 }}
+          </div>
+        </div>
+        <button class="btn primary" type="submit">Controleer antwoorden</button>
+      </form>
+    {% else %}
+      <p class="muted">De beheerder moet precies drie opdrachten aanmaken (1, 2 en 3).</p>
+    {% endif %}
+
+    {% if result %}
+      <div class="result">
+        <p>Je had {{ result.correct_count }} van de {{ result.total }} goed.
+          Dat is een cijfer: <strong>{{ result.score }}</strong>.</p>
+
+        {% if combination %}
+          <p class="success">Gefeliciteerd! Je combinatie is:
+            <span class="combo">{{ combination }}</span></p>
+        {% elif revealed %}
+          <p class="info">Hints voor het slot: <span class="combo">{{ revealed }}</span>
+            (vragen met een “?” moet je nog oplossen)</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}
